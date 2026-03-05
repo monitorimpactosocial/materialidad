@@ -50,7 +50,8 @@ export async function loadDatasets() {
     const conn = await getConnection();
 
     // Load static files from public/data
-    const basePath = "/materialidad-dashboard/data";
+    // Use Vite's BASE_URL so it works locally and on gh-pages (/materialidad/)
+    const basePath = `${import.meta.env.BASE_URL}data`;
 
     try {
         // 1. Fetch files
