@@ -136,7 +136,7 @@ export const InternalQuestionnaire = () => {
                                     <div className="flex gap-2">
                                         {[1, 2, 3, 4, 5].map(val => (
                                             <label key={`imp-${val}`} className={`cursor-pointer flex-1 text-center py-2 px-1 rounded-lg border transition-all ${formData.respuestasImpacto[idx] === val ? 'bg-emerald-500/20 border-emerald-500/50 text-emerald-400' : 'bg-black/30 border-white/10 text-slate-400 hover:bg-white/5'}`}>
-                                                <input required type="radio" name={`imp_${idx}`} value={val} checked={formData.respuestasImpacto[idx] === val} onChange={() => handleRespuestaChange('impacto', idx, val)} className="hidden" />
+                                                <input required type="radio" name={`imp_${idx}`} value={val} checked={formData.respuestasImpacto[idx] === val} onChange={() => handleRespuestaChange('impacto', idx, val)} className="sr-only" />
                                                 <div className="text-lg font-medium">{val}</div>
                                             </label>
                                         ))}
@@ -151,7 +151,7 @@ export const InternalQuestionnaire = () => {
                                     <div className="flex gap-2">
                                         {[1, 2, 3, 4, 5].map(val => (
                                             <label key={`fin-${val}`} className={`cursor-pointer flex-1 text-center py-2 px-1 rounded-lg border transition-all ${formData.respuestasFinanciero[idx] === val ? 'bg-amber-500/20 border-amber-500/50 text-amber-500' : 'bg-black/30 border-white/10 text-slate-400 hover:bg-white/5'}`}>
-                                                <input required type="radio" name={`fin_${idx}`} value={val} checked={formData.respuestasFinanciero[idx] === val} onChange={() => handleRespuestaChange('financiero', idx, val)} className="hidden" />
+                                                <input required type="radio" name={`fin_${idx}`} value={val} checked={formData.respuestasFinanciero[idx] === val} onChange={() => handleRespuestaChange('financiero', idx, val)} className="sr-only" />
                                                 <div className="text-lg font-medium">{val}</div>
                                             </label>
                                         ))}

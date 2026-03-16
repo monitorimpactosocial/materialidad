@@ -144,7 +144,7 @@ export const ExternalQuestionnaire = () => {
                                             value={val} 
                                             checked={formData.respuestas[idx] === val}
                                             onChange={() => handleRespuestaChange(idx, val)}
-                                            className="hidden"
+                                            className="sr-only"
                                         />
                                         <div className="text-lg mb-1">{val}</div>
                                         <div className="text-[10px] uppercase tracking-wider opacity-70">
@@ -175,7 +175,7 @@ export const ExternalQuestionnaire = () => {
                                     value={val} 
                                     checked={formData.percepcion === val}
                                     onChange={handleInputChange}
-                                    className="hidden"
+                                    className="sr-only"
                                 />
                                 {val}
                             </label>
