@@ -40,7 +40,7 @@ export const AuthGateway: React.FC<AuthGatewayProps> = ({ children }) => {
                 {/* Logo */}
                 <div className="mb-8 w-48 h-auto">
                     <img
-                        src="/materialidad/LOGO_PARACEL_SINFONDO.png"
+                        src={`${import.meta.env.BASE_URL}LOGO_PARACEL_SINFONDO.png`}
                         alt="Paracel Logo"
                         className="w-full h-auto drop-shadow-lg"
                     />
