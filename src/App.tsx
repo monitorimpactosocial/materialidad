@@ -4,11 +4,15 @@ import {
     Table as TableIcon,
     Download,
     RefreshCw,
-    LayoutDashboard
+    LayoutDashboard,
+    Users,
+    Briefcase
 } from 'lucide-react';
 import { useData } from './lib/DataContext';
 import { MaterialityMatrix } from './components/MaterialityMatrix';
 import { SettingsPanel } from './components/SettingsPanel';
+import { ExternalQuestionnaire } from './components/ExternalQuestionnaire';
+import { InternalQuestionnaire } from './components/InternalQuestionnaire';
 
 const App = () => {
     const [activeTab, setActiveTab] = useState('dashboard');
@@ -93,6 +97,24 @@ const App = () => {
 
                 <nav className="flex-1 p-6 space-y-3">
                     <button
+                        onClick={() => setActiveTab('external')}
+                        className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-xl text-left transition-all duration-300 ${activeTab === 'external' ? 'bg-gradient-to-r from-emerald-500/20 to-transparent text-emerald-300 border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.1)]' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}
+                    >
+                        <Users size={18} />
+                        <span className="font-medium text-sm">Cuestionario Externo</span>
+                    </button>
+                    
+                    <button
+                        onClick={() => setActiveTab('internal')}
+                        className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-xl text-left transition-all duration-300 ${activeTab === 'internal' ? 'bg-gradient-to-r from-emerald-500/20 to-transparent text-emerald-300 border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.1)]' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}
+                    >
+                        <Briefcase size={18} />
+                        <span className="font-medium text-sm">Cuestionario Interno</span>
+                    </button>
+
+                    <div className="h-px bg-white/5 my-4"></div>
+
+                    <button
                         onClick={() => setActiveTab('dashboard')}
                         className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-xl text-left transition-all duration-300 ${activeTab === 'dashboard' ? 'bg-gradient-to-r from-emerald-500/20 to-transparent text-emerald-300 border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.1)]' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'}`}
                     >
@@ -131,6 +153,8 @@ const App = () => {
                     <h1 className="text-xl font-semibold text-white tracking-tight">
                         {activeTab === 'dashboard' && 'Matriz de Doble Materialidad'}
                         {activeTab === 'table' && 'Ranking General de Temas'}
+                        {activeTab === 'external' && 'Evaluación a Grupos de Interés Externos'}
+                        {activeTab === 'internal' && 'Evaluación Directiva Financiera y de Impacto'}
                     </h1>
 
                     <div className="flex items-center gap-4">
@@ -161,7 +185,7 @@ const App = () => {
                                 <p>Iniciando Motor Analítico (DuckDB-WASM)...</p>
                             </div>
                         </div>
-                    ) : (
+                    ) : (activeTab === 'dashboard' || activeTab === 'table') ? (
                         <div className="h-full max-w-6xl mx-auto flex flex-col gap-6">
 
                             {/* KPI Cards */}
@@ -254,8 +278,13 @@ const App = () => {
                                     </div>
                                 </div>
                             )}
+                            
                         </div>
-                    )}
+                    ) : null}
+                    
+                    {/* Render Forms outside the KPI block */}
+                    {activeTab === 'external' && <ExternalQuestionnaire />}
+                    {activeTab === 'internal' && <InternalQuestionnaire />}
 
                 </div>
             </main>
